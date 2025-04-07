@@ -54,6 +54,7 @@ rm dataset/qo_dataset.zip
 │   ├── models/           # Core LimeQO implementation
 │   ├── utils/            # Helper functions and utilities
 │   └── strategies/       # Optimization strategies: Random, Greedy, LimeQO, LimeQO+
+│   └── run_experiment.py # Run main experiments
 ├── draw/                 # Figures and visualizations
 ├── experiment/           # Experiment results
 └── limeqo.ipynb          # Interactive demo notebook

@@ -41,25 +41,25 @@ def run_experiments(args, device):
     # Random
     print("Running random")
     random = RandomStrategy(new_observe_size=8)
-    for i in tqdm(range(1, 2)):
+    for i in tqdm(range(1, 21)):
         random.run(dataset, f"experiment/{args.dataset}/random/{i}.json")
     
     # # Greedy
     print("Running greedy")
     greedy = GreedyStrategy(new_observe_size=8)
-    for i in tqdm(range(1, 2)):
+    for i in tqdm(range(1, 21)):
         greedy.run(dataset, f"experiment/{args.dataset}/greedy/{i}.json")
     
     # LimeQO
     print("Running limeqo")
     limeqo = LimeQOStrategy(new_observe_size=8)
-    for i in tqdm(range(1, 2)):
+    for i in tqdm(range(1, 21)):
         limeqo.run(dataset, f"experiment/{args.dataset}/limeqo/{i}.json")
     
     # LimeQO+
     print("Running limeqo+")
     limeqo_plus = LimeQOPlusStrategy(new_observe_size=32, device=device)
-    for i in tqdm(range(1, 2)):
+    for i in tqdm(range(1, 6)):
         limeqo_plus.run(dataset, f"experiment/{args.dataset}/limeqo+/{i}.json")
 
 def main():
