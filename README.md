@@ -64,3 +64,18 @@ rm dataset/qo_dataset.zip
 Check out the interactive demo in [`limeqo.ipynb`](limeqo.ipynb) to see how LimeQO works! Achieve **2x speedup** in just less than 1 hour! ⬇️
 
 ![LimeQO](fig/limeqo.png)
+
+### ❤️ If you find our data, code, or the paper useful, please cite [our paper 📑](https://zixy17.github.io/pdf/limeqo_sigmod25.pdf):
+
+```
+@article{yi2025low,
+  title={Low Rank Learning for Offline Query Optimization},
+  author={Yi, Zixuan and Tian, Yao and Ives, Zachary G and Marcus, Ryan},
+  journal={Proceedings of the ACM on Management of Data},
+  volume={3},
+  number={3},
+  pages={1--26},
+  year={2025},
+  publisher={ACM New York, NY, USA}
+}
+```
