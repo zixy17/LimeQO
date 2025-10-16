@@ -15,5 +15,6 @@ setup(
         "torch", 
         "scikit-learn",
         "tqdm",
+        "matplotlib",
     ],
 )
