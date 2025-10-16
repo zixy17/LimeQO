@@ -85,8 +85,11 @@ Check out the interactive demo in [`limeqo.ipynb`](limeqo.ipynb) to see how Lime
 - **Datasets**  
     The directory `dataset/` contains partially packaged datasets.  
     To fully re-run experiments, you need to download the complete datasets (including all EXPLAIN plans) from Dropbox:
-    
-    `wget -O dataset/qo_dataset.zip "https://www.dropbox.com/scl/fo/y4e88tmcx7ywo4ou1unnh/ABN6iqV1t_ecktO51gsPKRc?rlkey=hedjnmkpak3r3gxjzx48s9etu&st=uxnr4s17&dl=1" unzip dataset/qo_dataset.zip -d dataset/ rm dataset/qo_dataset.zip`
+    ```
+    wget -O dataset/qo_dataset.zip "https://www.dropbox.com/scl/fo/y4e88tmcx7ywo4ou1unnh/ABN6iqV1t_ecktO51gsPKRc?rlkey=hedjnmkpak3r3gxjzx48s9etu&st=uxnr4s17&dl=1" 
+    unzip dataset/qo_dataset.zip -d dataset/ 
+    rm dataset/qo_dataset.zip
+    ```
     
     - The EXPLAIN plans are required only for **LimeQO+** (training requires the plan trees).
     - They are **not needed** for LimeQO or for reproducing figures.
