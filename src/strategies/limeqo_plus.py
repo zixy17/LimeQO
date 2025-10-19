@@ -38,8 +38,10 @@ class LimeQOPlusStrategy(BaseStrategy):
         tcnn = TCNN(dataset.num_features, self.rank, 
                     dataset.matrix.shape[0], dataset.matrix.shape[1])
         tcnn = tcnn.to(self.device)
+        perfect_improvement = min_observed.sum() - dataset.opt_time
         
-        while min_observed.sum() > dataset.opt_time + 10:
+        # stop when the improvement reached 95% of the perfect improvement
+        while min_observed.sum() - dataset.opt_time > perfect_improvement * 0.05:
             exec_time = dataset.get_exec_time(mask) + timeout
             min_observed = dataset.get_min_observed(dataset.matrix, mask)
             
