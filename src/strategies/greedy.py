@@ -62,6 +62,9 @@ class GreedyStrategy(BaseStrategy):
                     
                 while True:
                     hint_i = np.random.randint(dataset.matrix.shape[1])
+                    # if all hints have been explored, break
+                    if mask[file_i].sum() + timeout_m[file_i].sum() == mask.shape[1]:
+                        break
                     if mask[file_i, hint_i] == 0:
                         if timeout_m[file_i, hint_i] == 1:
                             continue
