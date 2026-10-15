@@ -57,6 +57,9 @@ def run_experiments(args, device):
         limeqo.run(dataset, f"experiment/{args.dataset}/limeqo/{i}.json")
     
     # LimeQO+
+    if not dataset.has_plans:
+        print(f"Skipping limeqo+: {dataset.zip_path} not found")
+        return
     print("Running limeqo+")
     limeqo_plus = LimeQOPlusStrategy(new_observe_size=32, device=device)
     for i in tqdm(range(1, 6)):

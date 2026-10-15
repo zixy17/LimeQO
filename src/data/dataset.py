@@ -24,6 +24,7 @@ class Dataset:
         self.matrix_path = f'dataset/{dataset_name}-matrix.csv'
         self.init_mask_path = f'dataset/init_{dataset_name}_mask.npy'
         self.zip_path = f'dataset/{dataset_name}.zip'
+        self.hint_classes_path = f'dataset/{dataset_name}-hint-classes.npy'
         
         # Load matrix and initial mask
         self.matrix_df = pd.read_csv(self.matrix_path, index_col='filename')
@@ -40,9 +41,16 @@ class Dataset:
         self.ufs = {}  # Union-find sets for equivalent hints
         self.total_cost = np.zeros((self.matrix.shape[0], self.matrix.shape[1]))
         
-        # Load and preprocess query plans
-        self.load_plans()
-        self.init_union_find()
+        # The EXPLAIN plans are needed only by LimeQO+. Without the zip, the
+        # equivalent hints come from the shipped plan classes.
+        self.has_plans = os.path.exists(self.zip_path)
+        if self.has_plans:
+            self.load_plans()
+            self.init_union_find()
+        else:
+            print(f"{self.zip_path} not found: using {self.hint_classes_path} "
+                  "(LimeQO+ needs the zip)")
+            self.init_union_find_from_classes()
 
     def load_plans(self):
         """Load and preprocess query execution plans"""
@@ -197,6 +205,16 @@ class Dataset:
                 for k in range(j+1, len(hint_list)):
                     col2 = hint_list[k]
                     self.ufs[i].union(col, col2)
+
+    def init_union_find_from_classes(self):
+        """Initialize union-find sets from dataset/{name}-hint-classes.npy"""
+        classes = np.load(self.hint_classes_path)
+        assert classes.shape == self.matrix.shape, \
+            f"{self.hint_classes_path} does not match the matrix"
+        for i, row in enumerate(classes):
+            self.ufs[i] = UnionFind(49)
+            for col, first in enumerate(row):
+                self.ufs[i].union(int(first), col)
 
     def get_same_hints(self, q, hintset):
         """Get all hints equivalent to the given hint for query q"""

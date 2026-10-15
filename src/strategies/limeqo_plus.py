@@ -25,6 +25,9 @@ class LimeQOPlusStrategy(BaseStrategy):
             dataset: Dataset object containing query data
             output_path: Path to save results
         """
+        if not dataset.has_plans:
+            raise FileNotFoundError(
+                f"LimeQO+ trains on the EXPLAIN plans: download {dataset.zip_path} (see README)")
         mask = dataset.init_mask.copy()
         exec_time = dataset.get_exec_time(mask)
         timeout_m = np.zeros_like(dataset.matrix)

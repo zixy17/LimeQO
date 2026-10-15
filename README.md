@@ -92,7 +92,7 @@ Check out the interactive demo in [`limeqo.ipynb`](limeqo.ipynb) to see how Lime
     ```
     
     - The EXPLAIN plans are required only for **LimeQO+** (training requires the plan trees).
-    - They are **not needed** for LimeQO or for reproducing figures.
+    - They are **not needed** for LimeQO or for reproducing figures. `dataset/{name}-hint-classes.npy` records which hints give the same plan, so without the zips `src/run_experiment.py` runs every method except LimeQO+ (regenerate these files with `python src/data/export_hint_classes.py ceb job stack dsb`).
 </details>
 
 <details> <summary>Reproduce Figures from Experiment Results </summary>
@@ -107,7 +107,7 @@ Check out the interactive demo in [`limeqo.ipynb`](limeqo.ipynb) to see how Lime
 <details> 
 <summary> Reproduce ALL experiment results </summary>
 
-1. Download datasets as described above.
+1. Download datasets as described above (needed only for LimeQO+).
 2. Run experiments:
     `python src/run_experiment.py --dataset ceb`
     - `--dataset` can be one of `ceb`, `job`, `stack`, `dsb`.
